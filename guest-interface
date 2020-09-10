@@ -1,0 +1,21 @@
+Gast_1 interfaces
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+#allow-hotplug eth0
+#iface eth0 inet dhcp
+
+auto eth0
+iface eth0 inet static
+address 188.xxx.xxx.186
+netmask 255.255.255.255
+pointopoint 188.xxx.xxx.133
+gateway 188.xxx.xxx.133
+
+
+iface eth0 inet6 static
+address 2a01:xxx:xxx:31c3::3
+netmask 64
+gateway 2a01:xxx:xxx:31c3::99
