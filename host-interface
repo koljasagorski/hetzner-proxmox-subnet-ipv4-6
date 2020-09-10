@@ -1,0 +1,41 @@
+Host interfaces
+# Loopback device:
+auto lo
+iface lo inet loopback
+#
+# device: eth0
+auto eth0
+iface eth0 inet static
+address 188.xxx.xxx.133
+netmask 255.255.255.255
+pointopoint 188.xxx.xxx.129
+gateway 188.xxx.xxx.129
+#
+iface eth0 inet6 static
+address 2a01:xxx:xxx:31c3::2
+netmask 128
+gateway fe80::1
+up sysctl -p
+# fuer Einzel-IPs
+auto vmbr0
+iface vmbr0 inet static
+address 188.xxx.xxx.133
+netmask 255.255.255.255
+bridge_ports none
+bridge_stp off
+bridge_fd 0
+up ip route add 188.xxx.xxx.186/32 dev vmbr0
+up ip route add 188.xxx.xxx.187/32 dev vmbr0
+up ip route add 188.xxx.xxx.188/32 dev vmbr0
+#
+iface vmbr0 inet6 static
+address 2a01:xxx:xxx:31c3::99
+netmask 64
+# fuer ein Subnet
+auto vmbr1
+iface vmbr1 inet static
+address 2a01:xxx:xxx:31c3::98
+netmask 64
+bridge_ports none
+bridge_stp off
+bridge_fd 0
